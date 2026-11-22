@@ -139,7 +139,7 @@ jobs:
             - `CarWithAny-*.apk`：LSPosed 模块 + 配置界面，包名 `com.ikang.carwithany`
             - `AllAppsDrawer-*.apk`：车机「全部应用」抽屉，包名 `dev.local.cwwl.drawer`
 
-            安装顺序：先装模块并在 LSPosed 里勾选作用域 `com.miui.carlink`，重连一次投屏；抽屉按需再装。
+            安装顺序：先装模块并在 LSPosed 里勾选作用域 `com.miui.carlink`，重启手机或者找到 carwith 应用详情页面，将它强制停止，重连一次投屏；抽屉按需再装。
           files: |
             out/CarWithAny-${{ steps.ver.outputs.version_name }}.apk
             out/AllAppsDrawer-${{ steps.ver.outputs.version_name }}.apk
