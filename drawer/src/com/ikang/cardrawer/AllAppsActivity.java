@@ -62,7 +62,7 @@ public class AllAppsActivity extends Activity {
 
     private static final String TAG = "cwwl-drawer";
     private static final String CARWITH_PKG = "com.miui.carlink";
-    private static final String ACTION_LAUNCH = "dev.local.cwwl.LAUNCH";
+    private static final String ACTION_LAUNCH = "com.ikang.cardrawer.LAUNCH";
     private static final String EXTRA_PKG = "pkg";
     private static final String EXTRA_DISPLAY = "display";
 

@@ -48,7 +48,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
  *    车机那块屏是 CarWith 自己 createVirtualDisplay 出来的 private display，
  *    第三方进程往上面 startActivity 会被拒（或退回手机屏）。所以由本模块在
  *    CarWith 进程内（display 属主）代为拉起：
- *      抽屉 --广播(dev.local.cwwl.LAUNCH{pkg,display})--> CarWith 进程 receiver
+ *      抽屉 --广播(com.ikang.cardrawer.LAUNCH{pkg,display})--> CarWith 进程 receiver
  *      -> getLaunchIntentForPackage + ActivityOptions.setLaunchDisplayId(display)
  */
 public class RedirectHook implements IXposedHookLoadPackage {
@@ -57,8 +57,10 @@ public class RedirectHook implements IXposedHookLoadPackage {
     private static final String TARGET_PKG = "com.miui.carlink";
     private static final String DEBUG_KEY = "ucar_ae_projection_debug_mode";
 
-    /** 抽屉发过来的拉起请求 */
-    private static final String ACTION_LAUNCH = "dev.local.cwwl.LAUNCH";
+    /** 抽屉发过来的拉起请求（action 跟着抽屉包名走：com.ikang.cardrawer.LAUNCH） */
+    private static final String ACTION_LAUNCH = "com.ikang.cardrawer.LAUNCH";
+    /** 旧版抽屉（dev.local.cwwl.drawer）仍在用的老 action，保留兼容 */
+    private static final String ACTION_LAUNCH_LEGACY = "dev.local.cwwl.LAUNCH";
     private static final String EXTRA_PKG = "pkg";
     private static final String EXTRA_DISPLAY = "display";
 
@@ -503,6 +505,8 @@ public class RedirectHook implements IXposedHookLoadPackage {
             }
         };
         IntentFilter filter = new IntentFilter(ACTION_LAUNCH);
+        // 兼容旧版抽屉（包名 dev.local.cwwl.drawer，action 还是老字符串）
+        filter.addAction(ACTION_LAUNCH_LEGACY);
         try {
             // API 33+ 必须显式声明导出属性；用反射避免老系统上没有这个重载
             Method m = Context.class.getMethod("registerReceiver",

@@ -47,7 +47,7 @@ hook 住产出白名单的两个入口 —— `com.carwith.common.utils.c0#s0(Li
 抽屉自己无法往 private display 上 `startActivity`，于是让属于 display 属主的 CarWith 进程代劳：
 
 ```
-抽屉 --广播 dev.local.cwwl.LAUNCH {pkg, display}--> CarWith 进程里的 receiver
+抽屉 --广播 com.ikang.cardrawer.LAUNCH {pkg, display}--> CarWith 进程里的 receiver
      -> getLaunchIntentForPackage + ActivityOptions.setLaunchDisplayId(display)
 ```
 
