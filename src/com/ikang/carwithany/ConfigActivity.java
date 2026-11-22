@@ -784,7 +784,7 @@ public class ConfigActivity extends Activity {
             return;
         }
         if (mCustom.isEmpty()) {
-            mCustomView.setText("手动条目：无（点“添加”可给任何包名登记一个显示名，比如让 dev.local.cwwl.drawer 显示成“知乎”）");
+            mCustomView.setText("手动条目：无（点“添加”可给任何包名登记一个显示名，比如让 com.ikang.cardrawer 显示成“知乎”）");
             return;
         }
         StringBuilder sb = new StringBuilder("手动条目（点一下删除最后一条）：");

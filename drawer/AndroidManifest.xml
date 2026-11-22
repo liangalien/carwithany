@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.local.cwwl.drawer">
+    package="com.ikang.cardrawer">
     <!-- 版本号由构建脚本注入（来源 version.properties），此处不写死 -->
 
     <uses-sdk android:minSdkVersion="29" android:targetSdkVersion="33" />
@@ -13,7 +13,7 @@
         android:hasCode="true">
 
         <activity
-            android:name="dev.local.cwwl.drawer.AllAppsActivity"
+            android:name="com.ikang.cardrawer.AllAppsActivity"
             android:label="全部应用"
             android:exported="true"
             android:screenOrientation="landscape"

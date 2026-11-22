@@ -7,7 +7,7 @@
 | 产物 | 包名 | 说明 |
 | --- | --- | --- |
 | `CarWithAny-<版本>.apk` | `com.ikang.carwithany` | LSPosed 模块，同时带配置界面（就是它自己的图标进去） |
-| `AllAppsDrawer-<版本>.apk` | `dev.local.cwwl.drawer` | 车机端的「全部应用」抽屉，横屏 6 列宫格 |
+| `AllAppsDrawer-<版本>.apk` | `com.ikang.cardrawer` | 车机端的「全部应用」抽屉，横屏 6 列宫格 |
 
 ![配置界面](docs/config-ui-buttons.png)
 
@@ -101,7 +101,7 @@ adb logcat -s CarWithRedirect:I
 - **点一下就保存生效**，不需要再点保存按钮；状态栏常驻「改动已自动保存」。
 - **已选的应用自动置顶**，并且**最近选的那个排最前**，方便反复调整。
 - **CarWith 自带的条目默认勾选**，右侧带浅蓝「自带」标签；取消勾选就是从白名单移除，移除后标签变红「已移除」。
-- 顶部可以手动登记「包名 + 显示名 + 分类」，给 CarWith 认不出的包名补一个名字（比如让 `dev.local.cwwl.drawer` 显示成「知乎」）。
+- 顶部可以手动登记「包名 + 显示名 + 分类」，给 CarWith 认不出的包名补一个名字（比如让 `com.ikang.cardrawer` 显示成「知乎」）。
 - 改动保存后**断开重连一次投屏**才会真正刷新到车机上（CarWith 只在拉起时读清单）。
 
 底部三个操作：
@@ -121,7 +121,7 @@ adb logcat -s CarWithRedirect:I
 CarWith 自带的「全部应用」有版本校验过不去，用自己的抽屉替代：
 
 1. 装 `AllAppsDrawer-*.apk`；
-2. 在配置界面里把它（`dev.local.cwwl.drawer`）加进「其他」分类；
+2. 在配置界面里把它（`com.ikang.cardrawer`）加进「其他」分类；
 3. 重连投屏，CarWith 的「投屏应用管理」/车机首屏里就会出现它，点开就是横屏 6 列的全部应用宫格，顶部可按名称或包名搜索，长按可置顶，点一下应用就在车机屏打开并自动退出。
 
 ![抽屉](docs/drawer.png)
@@ -249,7 +249,7 @@ CarWith 换大版本（或你发现某个「自带」应用没被标出来）时
 - 冒名白名单里已安装的应用（云听、网易云、小米音乐等）会因签名不符 `INSTALL_FAILED_UPDATE_INCOMPATIBLE`；装低版本会撞 `VERSION_DOWNGRADE`。
 - CarWith 的清单是云端 + 内置混合，不同机型/版本给到的条目不一样；「自带」标记以运行时抓到的为准，离线表只是兜底。
 - 模块自身跑在 CarWith 进程里，CarWith 崩溃时日志只能看 `CarWithRedirect`；改完配置必须重连投屏才生效（CarWith 不会实时重读）。
-- 抽屉用的是 `dev.local.cwwl.drawer` 这个自造包名，如果哪天 CarWith 把它当未知包过滤掉，需要在配置界面手动给它登记显示名（或改用白名单内的包名）。
+- 抽屉用的是 `com.ikang.cardrawer` 这个自造包名，如果哪天 CarWith 把它当未知包过滤掉，需要在配置界面手动给它登记显示名（或改用白名单内的包名）。
 - 车机端的最终显示名/图标由 CarWith 决定，模块只能控制「是否出现」和「归到哪个分类」。
 
 ## 捐赠

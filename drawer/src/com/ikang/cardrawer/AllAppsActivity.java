@@ -1,4 +1,4 @@
-package dev.local.cwwl.drawer;
+package com.ikang.cardrawer;
 
 import android.app.Activity;
 import android.content.Intent;
