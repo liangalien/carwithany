@@ -1,0 +1,135 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: '版本名，例如 1.2.0（留空则用 version.properties）'
+        required: false
+        type: string
+      version_code:
+        description: '版本号 versionCode（留空则按 versionName 推导）'
+        required: false
+        type: string
+      publish_release:
+        description: '是否顺手创建 GitHub Release（手动触发时）'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build APKs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install build-tools + platform
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager --install "platforms;android-36" "build-tools;36.0.0" > /dev/null
+          echo "ANDROID_HOME=$ANDROID_HOME"
+
+      - name: Resolve version
+        id: ver
+        run: |
+          set -euo pipefail
+          PNAME=$(grep -E '^VERSION_NAME=' version.properties | cut -d= -f2 | tr -d ' \r')
+          PCODE=$(grep -E '^VERSION_CODE=' version.properties | cut -d= -f2 | tr -d ' \r')
+
+          NAME=""
+          CODE=""
+          # 1) 手动触发时的输入优先
+          NAME="${{ github.event.inputs.version_name }}"
+          CODE="${{ github.event.inputs.version_code }}"
+          # 2) tag 触发：v1.2.3 -> 1.2.3
+          if [ -z "$NAME" ] && [ "${{ github.ref_type }}" = "tag" ]; then
+            NAME="${GITHUB_REF_NAME#v}"
+          fi
+          # 3) 兜底用 version.properties
+          [ -n "$NAME" ] || NAME="$PNAME"
+          # versionCode：显式给了就用，否则 major*10000+minor*100+patch
+          if [ -z "$CODE" ]; then
+            CODE=$(echo "$NAME" | awk -F. '{printf "%d", ($1*10000)+($2*100)+$3}')
+          fi
+          echo "version_name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version_code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "解析版本：$NAME / $CODE"
+
+      - name: Prepare signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          KS_PASS_SECRET: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          KEY_PASS_SECRET: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          ALIAS_SECRET: ${{ secrets.SIGNING_KEY_ALIAS }}
+        run: |
+          set -euo pipefail
+          # 默认用仓库内自带的 debug keystore（与旧版安装签名一致，可原地升级）
+          echo "KEYSTORE=$GITHUB_WORKSPACE/keystore/debug.keystore" >> "$GITHUB_ENV"
+          echo "KS_PASS=android" >> "$GITHUB_ENV"
+          echo "KEY_PASS=android" >> "$GITHUB_ENV"
+          echo "KEY_ALIAS=androiddebugkey" >> "$GITHUB_ENV"
+          if [ -n "${KEYSTORE_B64:-}" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+            echo "KEYSTORE=$RUNNER_TEMP/release.keystore" >> "$GITHUB_ENV"
+            echo "KS_PASS=${KS_PASS_SECRET}" >> "$GITHUB_ENV"
+            echo "KEY_PASS=${KEY_PASS_SECRET:-$KS_PASS_SECRET}" >> "$GITHUB_ENV"
+            [ -n "${ALIAS_SECRET:-}" ] && echo "KEY_ALIAS=${ALIAS_SECRET}" >> "$GITHUB_ENV"
+            echo "使用仓库 Secrets 里的签名证书"
+          else
+            echo "使用仓库内置 debug keystore"
+          fi
+
+      - name: Build
+        env:
+          VERSION_NAME: ${{ steps.ver.outputs.version_name }}
+          VERSION_CODE: ${{ steps.ver.outputs.version_code }}
+        run: |
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Show artifacts
+        run: ls -lh out/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: carwithany-${{ steps.ver.outputs.version_name }}
+          path: |
+            out/*.apk
+          if-no-files-found: error
+
+      - name: Create Release
+        if: github.ref_type == 'tag' || github.event.inputs.publish_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: CarWithAny ${{ steps.ver.outputs.version_name }}
+          tag_name: v${{ steps.ver.outputs.version_name }}
+          draft: false
+          generate_release_notes: true
+          body: |
+            CarWithAny ${{ steps.ver.outputs.version_name }}（versionCode ${{ steps.ver.outputs.version_code }}）
+
+            - `CarWithAny-*.apk`：LSPosed 模块 + 配置界面，包名 `com.ikang.carwithany`
+            - `AllAppsDrawer-*.apk`：车机「全部应用」抽屉，包名 `dev.local.cwwl.drawer`
+
+            安装顺序：先装模块并在 LSPosed 里勾选作用域 `com.miui.carlink`，重连一次投屏；抽屉按需再装。
+          files: |
+            out/CarWithAny-${{ steps.ver.outputs.version_name }}.apk
+            out/AllAppsDrawer-${{ steps.ver.outputs.version_name }}.apk

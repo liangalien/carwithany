@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ikang.carwithany">
+    <!-- 版本号由构建脚本注入（来源 version.properties），此处不写死 -->
+
+    <uses-sdk android:minSdkVersion="29" android:targetSdkVersion="33" />
+
+    <!-- 界面里要列出全部应用，Android 11+ 需要它 -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+    <application
+        android:label="CarWithAny"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:hasCode="true">
+
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="放行 CarWith 投屏内的跨应用跳转，并可把任意应用按分类加进 CarWith 白名单" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposedscope" />
+
+        <activity
+            android:name="com.ikang.carwithany.ConfigActivity"
+            android:label="CarWithAny"
+            android:icon="@mipmap/ic_launcher"
+            android:exported="true"
+            android:theme="@android:style/Theme.DeviceDefault.DayNight">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="com.ikang.carwithany.ConfigProvider"
+            android:authorities="com.ikang.carwithany.config"
+            android:exported="true" />
+
+        <receiver
+            android:name="com.ikang.carwithany.BuiltinReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.ikang.carwithany.BUILTIN" />
+                <action android:name="com.ikang.carwithany.SET" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

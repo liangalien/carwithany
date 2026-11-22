@@ -1,0 +1,322 @@
+[
+ {
+  "pkg": "com.android.phone",
+  "cat": "other",
+  "name": "电话"
+ },
+ {
+  "pkg": "com.netease.cloudmusic",
+  "cat": "music",
+  "name": "网易云音乐"
+ },
+ {
+  "pkg": "cmccwm.mobilemusic",
+  "cat": "music",
+  "name": "咪咕音乐"
+ },
+ {
+  "pkg": "com.baidu.BaiduMap",
+  "cat": "map",
+  "name": "百度地图"
+ },
+ {
+  "pkg": "com.autonavi.minimap",
+  "cat": "map",
+  "name": "高德地图"
+ },
+ {
+  "pkg": "com.ximalaya.ting.android",
+  "cat": "radio",
+  "name": "喜马拉雅"
+ },
+ {
+  "pkg": "com.baidu.netdisk",
+  "cat": "music",
+  "name": "百度网盘"
+ },
+ {
+  "pkg": "com.xtc.watch",
+  "cat": "other",
+  "name": "小天才"
+ },
+ {
+  "pkg": "com.shinyv.cnr",
+  "cat": "radio",
+  "name": "云听"
+ },
+ {
+  "pkg": "com.kugou.android",
+  "cat": "music",
+  "name": "酷狗音乐"
+ },
+ {
+  "pkg": "com.tencent.qqmusic",
+  "cat": "music",
+  "name": "QQ音乐"
+ },
+ {
+  "pkg": "com.sohu.newsclient",
+  "cat": "radio",
+  "name": "搜狐新闻"
+ },
+ {
+  "pkg": "com.leting",
+  "cat": "radio",
+  "name": "乐听头条"
+ },
+ {
+  "pkg": "com.sinyee.babybus.story",
+  "cat": "music",
+  "name": "宝宝巴士故事"
+ },
+ {
+  "pkg": "tv.danmaku.bili",
+  "cat": "other",
+  "name": "哔哩哔哩"
+ },
+ {
+  "pkg": "com.youku.phone",
+  "cat": "other",
+  "name": "优酷视频"
+ },
+ {
+  "pkg": "com.tencent.qqlive",
+  "cat": "other",
+  "name": "腾讯视频"
+ },
+ {
+  "pkg": "com.qiyi.video",
+  "cat": "other",
+  "name": "爱奇艺"
+ },
+ {
+  "pkg": "com.ss.android.ugc.aweme",
+  "cat": "other",
+  "name": "抖音"
+ },
+ {
+  "pkg": "com.smile.gifmaker",
+  "cat": "other",
+  "name": "快手"
+ },
+ {
+  "pkg": "com.kuaishou.nebula",
+  "cat": "other",
+  "name": "快手极速版"
+ },
+ {
+  "pkg": "com.duowan.kiwi",
+  "cat": "other",
+  "name": "虎牙直播"
+ },
+ {
+  "pkg": "com.ss.android.ugc.live",
+  "cat": "other",
+  "name": "抖音火山版"
+ },
+ {
+  "pkg": "com.ss.android.ugc.aweme.lite",
+  "cat": "other",
+  "name": "抖音极速版"
+ },
+ {
+  "pkg": "com.ss.android.yumme.video",
+  "cat": "other",
+  "name": "抖音精选"
+ },
+ {
+  "pkg": "com.cmcc.cmvideo",
+  "cat": "other",
+  "name": "咪咕视频"
+ },
+ {
+  "pkg": "cn.kuwo.kwmusichd",
+  "cat": "music",
+  "name": "酷我音乐HD"
+ },
+ {
+  "pkg": "com.tencent.qqmusicpad",
+  "cat": "music",
+  "name": "QQ音乐HD"
+ },
+ {
+  "pkg": "com.sinyee.babybus.recommendapp",
+  "cat": "other",
+  "name": "宝宝巴士"
+ },
+ {
+  "pkg": "com.miui.weather2",
+  "cat": "other",
+  "name": "小米天气"
+ },
+ {
+  "pkg": "com.sup.android.superb",
+  "cat": "other",
+  "name": "皮皮虾"
+ },
+ {
+  "pkg": "com.baidu.searchbox",
+  "cat": "other",
+  "name": "百度"
+ },
+ {
+  "pkg": "com.luna.music",
+  "cat": "music",
+  "name": "汽水音乐"
+ },
+ {
+  "pkg": "com.ss.android.article.news",
+  "cat": "other",
+  "name": "今日头条"
+ },
+ {
+  "pkg": "com.zhihu.android",
+  "cat": "other",
+  "name": "知乎"
+ },
+ {
+  "pkg": "com.sina.weibo",
+  "cat": "other",
+  "name": "微博"
+ },
+ {
+  "pkg": "io.dushu.fandengreader",
+  "cat": "radio",
+  "name": "帆书"
+ },
+ {
+  "pkg": "com.tencent.map",
+  "cat": "map",
+  "name": "腾讯地图"
+ },
+ {
+  "pkg": "com.miui.fm",
+  "cat": "music",
+  "name": "蜻蜓FM"
+ },
+ {
+  "pkg": "cn.xuexi.android",
+  "cat": "radio",
+  "name": "学习强国"
+ },
+ {
+  "pkg": "com.miui.player",
+  "cat": "music",
+  "name": "音乐"
+ },
+ {
+  "pkg": "com.kugou.android.lite",
+  "cat": "music",
+  "name": "酷狗概念版"
+ },
+ {
+  "pkg": "com.tencent.news",
+  "cat": "other",
+  "name": "腾讯新闻"
+ },
+ {
+  "pkg": "com.tencent.wemeet.app",
+  "cat": "other",
+  "name": "腾讯会议"
+ },
+ {
+  "pkg": "com.sohu.sohuvideo",
+  "cat": "other",
+  "name": "搜狐视频"
+ },
+ {
+  "pkg": "com.example.pptv",
+  "cat": "other",
+  "name": "人人视频"
+ },
+ {
+  "pkg": "com.funshion.video.mobile",
+  "cat": "other",
+  "name": "风行"
+ },
+ {
+  "pkg": "com.tencent.weishi",
+  "cat": "other",
+  "name": "腾讯微视"
+ },
+ {
+  "pkg": "com.baidu.haokan",
+  "cat": "other",
+  "name": "好看视频"
+ },
+ {
+  "pkg": "com.cctv.yangshipin.app.androidp",
+  "cat": "other",
+  "name": "央视频"
+ },
+ {
+  "pkg": "com.yixia.videoeditor",
+  "cat": "other",
+  "name": "秒拍-10秒拍大片"
+ },
+ {
+  "pkg": "cn.kuwo.player",
+  "cat": "music",
+  "name": "酷我音乐"
+ },
+ {
+  "pkg": "com.ss.android.lark",
+  "cat": "other",
+  "name": "飞书"
+ },
+ {
+  "pkg": "com.ss.android.article.video",
+  "cat": "media_app",
+  "name": "西瓜视频"
+ },
+ {
+  "pkg": "air.tv.douyu.android",
+  "cat": "media_app",
+  "name": "斗鱼直播"
+ },
+ {
+  "pkg": "com.hunantv.imgo.activity",
+  "cat": "media_app",
+  "name": "芒果TV"
+ },
+ {
+  "pkg": "com.ximalaya.ting.lite",
+  "cat": "radio",
+  "name": "喜马拉雅极速版"
+ },
+ {
+  "pkg": "com.ss.android.article.lite",
+  "cat": "other",
+  "name": "头条搜索极速版"
+ },
+ {
+  "pkg": "com.qiyi.video.lite",
+  "cat": "media_app",
+  "name": "爱奇艺极速版"
+ },
+ {
+  "pkg": "com.wondertek.miguaikan",
+  "cat": "media_app",
+  "name": "咪咕视频爱看版"
+ },
+ {
+  "pkg": "com.douyu.rush",
+  "cat": "media_app",
+  "name": "斗鱼直播极速版"
+ },
+ {
+  "pkg": "com.miui.androidx.samples",
+  "cat": "media_app",
+  "name": ""
+ },
+ {
+  "pkg": "com.miui.embdemo",
+  "cat": "other",
+  "name": ""
+ },
+ {
+  "pkg": "com.android.embdemo",
+  "cat": "other",
+  "name": ""
+ }
+]

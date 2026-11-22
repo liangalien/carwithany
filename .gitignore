@@ -1,0 +1,17 @@
+# 构建产物
+/build/
+/out/
+*.apk
+*.idsig
+
+# 编辑器 / 工具
+.idea/
+.gradle/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 本地抓包与临时数据
+*.log
+/cw/

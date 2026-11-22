@@ -1,0 +1,12 @@
+* text=auto eol=lf
+
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.java text
+*.xml text
+*.md text
+*.yml text
+
+*.jar binary
+*.png binary
+*.keystore binary
